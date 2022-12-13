@@ -17,4 +17,4 @@ A really nice form component.
 
 #### Defined in
 
-Form/AFormComponentOne.tsx:8
+[Form/AFormComponentOne.tsx:8](https://github.com/iway1/stack-native/blob/9be2dbe/react-native/src/components/Form/AFormComponentOne.tsx#L8)

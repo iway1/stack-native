@@ -17,4 +17,4 @@ A hook that returns "usington".
 
 #### Defined in
 
-useUsington.tsx:7
+[useUsington.tsx:7](https://github.com/iway1/stack-native/blob/9be2dbe/react-native/src/hooks/useUsington.tsx#L7)

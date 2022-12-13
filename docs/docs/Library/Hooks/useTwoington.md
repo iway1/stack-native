@@ -21,4 +21,4 @@ const twoington = useTwoington("no")
 
 #### Defined in
 
-useTwoington.tsx:10
+[useTwoington.tsx:10](https://github.com/iway1/stack-native/blob/9be2dbe/react-native/src/hooks/useTwoington.tsx#L10)

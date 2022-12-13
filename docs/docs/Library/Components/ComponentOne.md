@@ -28,4 +28,4 @@ return (
 
 #### Defined in
 
-ComponentOne.tsx:17
+[ComponentOne.tsx:17](https://github.com/iway1/stack-native/blob/9be2dbe/react-native/src/components/ComponentOne.tsx#L17)

@@ -16,4 +16,4 @@ hat's the only time it should be used, though, some times it is just too much.
 
 #### Defined in
 
-ComponentTwo.tsx:29
+[ComponentTwo.tsx:29](https://github.com/iway1/stack-native/blob/9be2dbe/react-native/src/components/ComponentTwo.tsx#L29)
