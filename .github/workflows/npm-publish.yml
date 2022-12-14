@@ -1,0 +1,55 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Publish React Native NPM Package
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  # TODO - add tests and run them
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - run: npm ci
+  #     - run: npm test
+
+  publish-npm:
+    runs-on: ubuntu-latest
+    concurrency: "run"
+    defaults:
+      run:
+        working-directory: ./react-native
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Patch package version and commit
+        run: |
+          npm version patch
+      - name: Build App
+        run: |
+          yarn build
+      - name: Publish with yarn
+        run: |
+          yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Commit version patch
+        run: |
+          git add package.json
+          git commit -m "Workflow: Auto bump package patch version."
+          git push
