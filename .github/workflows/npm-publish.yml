@@ -42,6 +42,7 @@ jobs:
           npm version patch
       - name: Build App
         run: |
+          pnpm install
           yarn build
       - name: Publish with yarn
         run: |
