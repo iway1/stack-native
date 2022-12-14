@@ -5,6 +5,9 @@ name: Publish React Native NPM Package
 
 on:
   push:
+    # Only run when there's a change to the source code in the mobile project.
+    paths:
+      - react-native/src
     branches:
       - main
   workflow_dispatch:
@@ -40,7 +43,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - name: Patch package version and commit
+      - name: Patch package version
         run: |
           npm version patch
       - name: Build App

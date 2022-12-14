@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "stack-native": ["comps/index"]
+      "stack-native": ["src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
