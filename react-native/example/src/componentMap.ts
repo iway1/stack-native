@@ -1,5 +1,5 @@
-import { ComponentOneScreen } from 'example/src/components/form/ComponentOne.Screen';
-import { ComponentTwoScreen } from 'example/src/components/form/ComponentTwo.Screen';
+import { ANewScreen } from 'example/src/components/TextField/ANew.Screen';
+import { TextFieldScreen } from 'example/src/components/TextField/TextField.Screen';
 
 export type ScreenComponent = () => JSX.Element;
 
@@ -19,9 +19,11 @@ export function isComponentMap(
  */
 export const componentMap: ComponentMap = {
   components: {
-    form: {
-      componentOne: ComponentOneScreen,
-      componentTwo: ComponentTwoScreen,
+    textField: {
+      textField: TextFieldScreen,
+      anotherTextField: TextFieldScreen,
+      anotherScreen: ANewScreen,
     },
   },
+  hooks: {},
 };

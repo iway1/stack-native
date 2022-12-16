@@ -33,7 +33,8 @@ function commonProcessing(string: string, fileName: string) {
 
 function processDocFile(fileName: string, fileString: string): string {
   let r = commonProcessing(fileString, fileName);
-  let titleLine = r.slice(0, r.indexOf("\n") + 1).slice(2);
+  const titleFullLine = r.slice(0, r.indexOf("\n") + 1);
+  let titleLine = titleFullLine.slice(2);
 
   // remove folder names:
   const split = titleLine.split("/");

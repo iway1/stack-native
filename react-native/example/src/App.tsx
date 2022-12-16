@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { Image, View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,11 +18,11 @@ const stackNavigator = createStackNavigator();
 type ComponentMapFlattened = string[];
 
 function flattenComponentMap(
-  componentMap: ComponentMap,
+  map: ComponentMap,
   path: string[]
 ): ComponentMapFlattened {
   let r: ComponentMapFlattened = [];
-  for (var [name, componentOrScreen] of Object.entries(componentMap)) {
+  for (var [name, componentOrScreen] of Object.entries(map)) {
     const newPath = [...path, name];
     if (isComponentMap(componentOrScreen)) {
       r.push(newPath.join('.'));
@@ -52,6 +53,7 @@ function Inner() {
               <Image className="flex-row justify-start" source={images.logo} />
             </View>
           ),
+
           headerRight: () => {
             return <Text className="text-[#FEB52B] mr-5 text-2xl">Native</Text>;
           },
@@ -83,14 +85,18 @@ export default function App() {
 
   React.useEffect(() => {
     if (navStateLoaded) return;
-    AsyncStorage.getItem(NAV_STATE_KEY).then((r) => {
-      if (!r) {
+    AsyncStorage.getItem(NAV_STATE_KEY)
+      .then((r) => {
+        if (!r) {
+          setNavStateLoaded(true);
+          return;
+        }
+        setInitialNavState(JSON.parse(r));
         setNavStateLoaded(true);
-        return;
-      }
-      setInitialNavState(JSON.parse(r));
-      setNavStateLoaded(true);
-    });
+      })
+      .catch(() => {
+        console.log("Couldn't async storage");
+      });
   }, [navStateLoaded]);
   if (!navStateLoaded) return null;
   return (
@@ -100,7 +106,7 @@ export default function App() {
         AsyncStorage.setItem(NAV_STATE_KEY, JSON.stringify(state));
       }}
     >
-      <View style={{ flex: 1, justifyContent: 'center' }}>
+      <View className="flex flex-1 justify-center">
         <Inner />
       </View>
     </NavigationContainer>

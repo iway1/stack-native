@@ -33,7 +33,7 @@ export function ContainerScreen() {
   const componentMapOrScreenComponent = resolvePath(currentPath);
   return isComponentMap(componentMapOrScreenComponent) ? (
     <ComponentMapScreen
-      componentMap={componentMapOrScreenComponent}
+      map={componentMapOrScreenComponent}
       path={currentPath}
     />
   ) : (
@@ -43,9 +43,9 @@ export function ContainerScreen() {
 
 export function ComponentMapScreen({
   path,
-  componentMap,
+  map,
 }: {
-  componentMap: ComponentMap;
+  map: ComponentMap;
   path: string[];
 }) {
   const nav = useNavigation<StackNavigationProp<any>>();
@@ -59,8 +59,8 @@ export function ComponentMapScreen({
   }
 
   return (
-    <ScrollView className="p-1 pt-0" style={{ backgroundColor: '#3f3f46' }}>
-      {Object.entries(componentMap).map(([name, screenOrComponentMap]) => {
+    <ScrollView className="p-1 pt-0 bg-[#3f3f46]">
+      {Object.entries(map).map(([name, screenOrComponentMap]) => {
         const isMap = isComponentMap(screenOrComponentMap);
         return (
           <TouchableOpacity
