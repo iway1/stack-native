@@ -3,5 +3,6 @@
         "activityBar.background": "#FEB52B",
         "titleBar.activeBackground": "#000000",
         "titleBar.activeForeground": "#FFFBFC"
-    }
+    },
+    "typescript.preferences.importModuleSpecifier": "project-relative"
 }

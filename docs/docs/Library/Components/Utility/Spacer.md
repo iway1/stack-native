@@ -10,7 +10,7 @@ Spacer
 
 #### Defined in
 
-Utility/Spacer.tsx:8
+[src/components/Utility/Spacer.tsx:6](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Utility/Spacer.tsx#L6)
 
 ## Functions
 
@@ -33,7 +33,7 @@ on screen width / height. If you want static spacing, use StaticSpacer
 
 #### Defined in
 
-Utility/Spacer.tsx:23
+[src/components/Utility/Spacer.tsx:21](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Utility/Spacer.tsx#L21)
 
 ___
 
@@ -57,4 +57,4 @@ the Spacer component.
 
 #### Defined in
 
-Utility/Spacer.tsx:44
+[src/components/Utility/Spacer.tsx:42](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Utility/Spacer.tsx#L42)

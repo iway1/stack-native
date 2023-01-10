@@ -9,14 +9,15 @@ Can be access via useStkOptions()
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `defaultButtonProps?` | `OptionalPropsOnly`<[`ButtonProps`](Inputs_Button.md#buttonprops)\> | Default props to pass to `<STKButton/>` components. |
 | `defaultErrorMessageProps?` | `OptionalPropsOnly`<`TextProps`\> | InputErrorMessageComponent is the component that is shown to when there is an error message supplied to an InputContainer |
-| `defaultInputContainerProps?` | `OptionalPropsOnly`<[`InputContainerProps`](Inputs_InputContainer.md#inputcontainerprops)\> | Default props to pass to the InputContainer component. Can be used to style your input containers globally. Only accepts optional keys. |
-| `defaultTextInputProps?` | `OptionalPropsOnly`<`TextInput`\> | Default text input props. Good for setting "selectionColor", keyboard type and other things. If you're wanting to style your text input, consider using defaultInputContainerProps instead. |
-| `parseErrorObject` | (`error`: `unknown`) => `NetworkErrorType` | Function to extract an error message from a network error object (should handle any errors thrown in queries.) Required because your app should know how to deal with network errors and create messages from them. |
+| `defaultInputContainerProps?` | `OptionalPropsOnly`<[`InputContainerProps`](Inputs_InputContainer.md#inputcontainerprops) & `ViewProps`\> | Default props to pass to the InputContainer component. Can be used to style your input containers globally (TextInput, DropDown). |
+| `defaultTextInputProps?` | `OptionalPropsOnly`<`TextInput`\> | Default text input props. Good for setting "selectionColor", keyboard type and other things. If you're wanting to style your text input contaienr (which is usually where most of the styles go), consider using defaultInputContainerProps instead. |
+| `parseNetworkError` | (`error`: `unknown`) => `NetworkErrorType` | Function to extract an error message from a network error object (should handle any errors thrown in queries.) Required because your app should know how to deal with network errors and create messages from them. Whatever is returned from this function will be used to display network errors via the error utilities like (useQueryOrMutationError). |
 
 #### Defined in
 
-Context/STKContext.tsx:15
+[src/components/Context/STKContext.tsx:23](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/STKContext.tsx#L23)
 
 ___
 
@@ -35,7 +36,7 @@ Values provided by the STKContext that aren't options. Can be accessed via useSt
 
 #### Defined in
 
-Context/STKContext.tsx:45
+[src/components/Context/STKContext.tsx:61](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/STKContext.tsx#L61)
 
 ## Functions
 
@@ -60,7 +61,7 @@ Can be accessed via useStkContext hook.
 
 #### Defined in
 
-Context/STKContext.tsx:72
+[src/components/Context/STKContext.tsx:88](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/STKContext.tsx#L88)
 
 ___
 
@@ -78,7 +79,7 @@ STKContextValues
 
 #### Defined in
 
-Context/STKContext.tsx:114
+[src/components/Context/STKContext.tsx:134](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/STKContext.tsx#L134)
 
 ___
 
@@ -95,4 +96,4 @@ Probably not going to be used often other than internally.
 
 #### Defined in
 
-Context/STKContext.tsx:128
+[src/components/Context/STKContext.tsx:148](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/STKContext.tsx#L148)

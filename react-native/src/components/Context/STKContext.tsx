@@ -1,7 +1,17 @@
-import type { InputContainerProps } from 'src/components/Inputs/InputContainer';
+import type { InputContainerProps } from '../Inputs/InputContainer';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { TextInput, TextProps, useWindowDimensions, View } from 'react-native';
+import {
+  TextInput,
+  TextProps,
+  useWindowDimensions,
+  View,
+  StyleSheet,
+  ViewProps,
+} from 'react-native';
 import type { OptionalPropsOnly } from 'src/internal/utility-types';
+import type { ButtonProps } from '../Inputs/Button';
+import { PushNotificationContextProvider } from './PushNotifications';
+import type { NotificationChannelInput } from 'expo-notifications';
 
 type NetworkErrorType = {
   message: string;
@@ -14,10 +24,12 @@ type NetworkErrorType = {
  */
 export type STKContextOptions = {
   /**
-   * Default props to pass to the InputContainer component. Can be used to style your input containers globally.
-   * Only accepts optional keys.
+   * Default props to pass to the InputContainer component.
+   * Can be used to style your input containers globally (TextInput, DropDown).
    */
-  defaultInputContainerProps?: OptionalPropsOnly<InputContainerProps>;
+  defaultInputContainerProps?: OptionalPropsOnly<
+    InputContainerProps & ViewProps
+  >;
 
   /**
    * InputErrorMessageComponent is the component that is shown to when there is an error message supplied to an InputContainer
@@ -26,15 +38,27 @@ export type STKContextOptions = {
 
   /**
    * Default text input props. Good for setting "selectionColor", keyboard type and other things. If you're wanting to style
-   * your text input, consider using defaultInputContainerProps instead.
+   * your text input contaienr (which is usually where most of the styles go), consider using defaultInputContainerProps instead.
    */
   defaultTextInputProps?: OptionalPropsOnly<TextInput>;
 
   /**
+   * Default props to pass to `<STKButton/>` components.
+   */
+  defaultButtonProps?: OptionalPropsOnly<ButtonProps>;
+
+  /**
    * Function to extract an error message from a network error object (should handle any errors thrown in queries.)
    * Required because your app should know how to deal with network errors and create messages from them.
+   * Whatever is returned from this function will be used to display network errors via the error utilities
+   * like (useQueryOrMutationError).
    */
-  parseErrorObject: (error: unknown) => NetworkErrorType;
+  parseNetworkError: (error: unknown) => NetworkErrorType;
+
+  /**
+   * In case you need to change the push notification channel
+   */
+  androidNotificationChannel?: NotificationChannelInput;
 };
 
 type STKContextOptionsValues = STKContextOptions;
@@ -82,30 +106,36 @@ export function STKContextProvider({
   const isLoaded = !!appHeight;
 
   return (
-    <View
-      className="flex-1"
-      onLayout={(e) => {
-        setAppHeight(e.nativeEvent.layout.height);
-      }}
-    >
-      {isLoaded && (
-        <valuesContext.Provider
-          value={{
-            options: {
-              ...options,
-            },
-            values: {
-              appHeight,
-              appWidth: appWidth,
-            },
-          }}
-        >
-          {children}
-        </valuesContext.Provider>
-      )}
-    </View>
+    <PushNotificationContextProvider>
+      <View
+        style={styles.containerView}
+        onLayout={(e) => {
+          setAppHeight(e.nativeEvent.layout.height);
+        }}
+      >
+        {isLoaded && (
+          <valuesContext.Provider
+            value={{
+              options: options,
+              values: {
+                appHeight,
+                appWidth: appWidth,
+              },
+            }}
+          >
+            {children}
+          </valuesContext.Provider>
+        )}
+      </View>
+    </PushNotificationContextProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  containerView: {
+    flex: 1,
+  },
+});
 
 /**
  * Returns values calculated by the STKContextProvider

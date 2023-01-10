@@ -25,17 +25,17 @@ import {
   FadeIn,
   FadeOut,
 } from 'react-native-reanimated';
-import { useStkOptions } from 'src/components/Context/STKContext';
-import { InputContainer } from 'src/components/Inputs/InputContainer';
-import { Spacer } from 'src/components/Utility/Spacer';
-import { useQueryOrMutationError } from 'src/hooks/Query/useQueryOrMutationError';
-import { useIsFirstRender } from 'src/hooks/Utility/useIsFirstRender';
-import {
-  AnimatedMaskInput,
-  AnimatedView,
-} from 'src/internal/NativeWindComponents';
-import { isMutation, QueryOrMutation } from 'src/internal/react-query';
-import { reanimatedDefaultAnimations } from 'src/internal/reanimated-layout-animations';
+import { useStkOptions } from '../Context/STKContext';
+import { InputContainer } from './InputContainer';
+import { Spacer } from '../Utility/Spacer';
+import { useQueryOrMutationError } from '../../hooks/Query/useQueryOrMutationError';
+import { useIsFirstRender } from '../../hooks/Utility/useIsFirstRender';
+import { AnimatedMaskInput, AnimatedView } from '../../internal/HOC';
+import { isMutation, QueryOrMutation } from '../../internal/react-query';
+import { reanimatedDefaultAnimations } from '../../internal/reanimated-layout-animations';
+import { styled } from 'nativewind/dist/styled';
+import type { ForwardRefExoticComponent } from 'react';
+// import { reanimatedDefaultAnimations } from '../../internal/reanimated-layout-animations';
 
 type MaskType = 'phone';
 
@@ -141,12 +141,27 @@ export type TextFieldControlledProps = {
    * Applies additional styles when the input is set to multiline.
    */
   multilineStyles?: StyleProp<ViewStyle>;
+
+  /**
+   * Component to render a
+   */
+  LabelComponent?: ReactNode;
+
+  /**
+   * Style to apply to the container
+   */
+  style?: StyleProp<ViewStyle>;
+
+  /**
+   * nativewind class name.
+   */
+  className?: string;
 };
 
 /**
  * A controlled text field. Useful for situation where controlled components don't fit your use case.
  */
-export function TextFieldControlled({
+export const TextFieldControlled = styled(function ({
   containerProps,
   containerStyle,
   rightAdornmentElement,
@@ -161,6 +176,7 @@ export function TextFieldControlled({
   multiline,
   error,
   multilineStyles,
+  style,
 }: TextFieldControlledProps) {
   const inputRef = useRef<TextInput | null>(null); // prop is used instead if prop is passed.
   const [focused, setFocused] = useState<boolean>(false);
@@ -199,6 +215,7 @@ export function TextFieldControlled({
     ...stkOptions.defaultTextInputProps,
     ...textInputProps_,
   };
+
   return (
     <>
       <InputContainer
@@ -207,6 +224,7 @@ export function TextFieldControlled({
           containerStyle,
           containerProps?.style,
           multiline ? multilineStyles : undefined,
+          style,
         ]}
         onPress={() => {
           _ref.current?.focus();
@@ -228,11 +246,15 @@ export function TextFieldControlled({
               : {}),
           }}
           ref={_ref}
-          style={[
-            commonInput,
-            textInputProps?.style,
-            inputAnimatedTextColorStyle,
-          ]}
+          style={
+            true
+              ? {}
+              : [
+                  commonInput,
+                  textInputProps?.style,
+                  inputAnimatedTextColorStyle,
+                ]
+          }
           value={textInputProps.value ? textInputProps.value : ''}
           onChangeText={(_maskedText, unmasked) => {
             textInputProps?.onChangeText &&
@@ -273,7 +295,7 @@ export function TextFieldControlled({
       {showError && (
         <AnimatedView
           pointerEvents="none"
-          className="items-center"
+          style={styles.errorContainer}
           key={showError} // makes it animate when text changes
           {...reanimatedDefaultAnimations}
         >
@@ -283,7 +305,7 @@ export function TextFieldControlled({
       )}
     </>
   );
-}
+}) as ForwardRefExoticComponent<TextFieldControlledProps>;
 
 function maskForMaskType(type?: MaskType) {
   switch (type) {
@@ -318,4 +340,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   defaultMultiline: { height: 120, borderRadius: 12 },
+  errorContainer: {
+    alignItems: 'center',
+  },
 });

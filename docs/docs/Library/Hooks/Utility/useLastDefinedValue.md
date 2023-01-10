@@ -16,7 +16,7 @@ conditional navigation, depending on data that the first screen needed.).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `v` | `T` | A value |
+| `v` | `T` | Any value |
 
 #### Returns
 
@@ -26,4 +26,4 @@ The same value, or the last defined version of it.
 
 #### Defined in
 
-Utility/useLastDefinedValue.ts:11
+[Utility/useLastDefinedValue.ts:11](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/hooks/Utility/useLastDefinedValue.ts#L11)

@@ -1,7 +1,6 @@
-import { AnimatedView } from 'src/internal/NativeWindComponents';
-import { styled } from 'nativewind';
+import { AnimatedView } from '../../internal/HOC';
 import React, { type ReactNode, useEffect } from 'react';
-import { Easing, StyleSheet, Pressable, PressableProps } from 'react-native';
+import { StyleSheet, Pressable, PressableProps, View } from 'react-native';
 // import MaskInput from 'react-native-mask-input';
 import Animated, {
   useSharedValue,
@@ -10,12 +9,14 @@ import Animated, {
   withTiming,
   Layout,
   FadeIn,
+  Easing,
 } from 'react-native-reanimated';
-import { logUsageWarning } from 'src/internal/log-usage-warning';
-import { useStkOptions } from 'src/components/Context/STKContext';
+import { logUsageWarning } from '../../internal/log-usage-warning';
+import { useStkOptions } from '../Context/STKContext';
+import { styled } from 'nativewind';
+import type { ForwardRefExoticComponent } from 'react';
 
-const AnimatedPressable = Animated.createAnimatedComponent(styled(Pressable));
-// const AnimatedMaskInput = Animated.createAnimatedComponent(MaskInput);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 /**
  * Props for the input container
@@ -74,6 +75,9 @@ export type InputContainerProps = {
   error?: boolean;
 };
 
+export type InputContainerAllProps = InputContainerProps &
+  PressableProps & { children: ReactNode };
+
 /**
  * A component that should be used as a base for building text-input like components.
  * This shouldn't be directly in Screens used too often, usually just passed as the `InputContainer` prop to `TextField` and such.
@@ -87,7 +91,9 @@ export type InputContainerProps = {
  * ```
  * @param props
  */
-export function InputContainer(props: InputContainerProps & PressableProps) {
+export const InputContainer = styled<InputContainerAllProps>(function (
+  props: InputContainerAllProps
+) {
   const { defaultInputContainerProps } = useStkOptions();
   const {
     onPress,
@@ -102,27 +108,33 @@ export function InputContainer(props: InputContainerProps & PressableProps) {
     ...defaultInputContainerProps,
     ...props,
   };
-
   const focusedBorderColor = borderColor?.focused ?? 'transparent';
   const unfocusedBorderColor = borderColor?.unfocused ?? 'transparent';
   const focusedAnimation = useSharedValue(0);
 
-  const containerAnimatedFocusedStyle = useAnimatedStyle(() => ({
-    borderColor: interpolateColor(
-      focusedAnimation.value,
-      [0, 1],
-      [unfocusedBorderColor, focusedBorderColor]
-    ),
-  }));
+  const containerAnimatedFocusedStyle = useAnimatedStyle(
+    () => ({
+      borderColor: interpolateColor(
+        focusedAnimation.value,
+        [0, 1],
+        [unfocusedBorderColor, focusedBorderColor]
+      ),
+    }),
+    [focusedBorderColor, unfocusedBorderColor]
+  );
 
   useEffect(() => {
     focusedAnimation.value = withTiming(focused ? 1 : 0, {
-      duration: 40,
+      duration: 150,
       easing: Easing.in(Easing.ease),
     });
   }, [focused, focusedAnimation]);
 
-  const containerStyles = [styles.defaultContainerStyle, props.style];
+  const containerStyles = [
+    styles.defaultContainerStyle,
+    rest.style,
+    containerAnimatedFocusedStyle,
+  ];
 
   if (
     typeof error !== 'undefined' &&
@@ -139,14 +151,14 @@ export function InputContainer(props: InputContainerProps & PressableProps) {
   return (
     <AnimatedPressable
       {...rest}
-      style={[containerStyles, containerAnimatedFocusedStyle]}
+      style={[containerStyles]}
       layout={Layout.duration(150)}
       onPress={onPress}
     >
       <>
         {leftAdornmentElement}
-        {props.children}
-        <AnimatedView className="flex-row items-center">
+        <View style={styles.innerContainerStyle}>{props.children}</View>
+        <AnimatedView style={styles.innerViewStyle}>
           {error ? (
             <AnimatedView entering={FadeIn.duration(150)}>
               {errorAdornmentElement}
@@ -158,7 +170,7 @@ export function InputContainer(props: InputContainerProps & PressableProps) {
       </>
     </AnimatedPressable>
   );
-}
+}) as ForwardRefExoticComponent<InputContainerAllProps>;
 
 // These might be overwritten so I think we have to use a stylesheet
 const styles = StyleSheet.create({
@@ -170,6 +182,14 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: 'white',
     borderRadius: 1000,
+    alignSelf: 'stretch',
+  },
+  innerContainerStyle: {
+    flex: 1,
+  },
+  innerViewStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

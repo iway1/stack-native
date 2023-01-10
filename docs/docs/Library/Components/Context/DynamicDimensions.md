@@ -18,7 +18,7 @@ y / 861 * actualAppHeight
 
 #### Defined in
 
-Context/DynamicDimensions.ts:9
+[src/components/Context/DynamicDimensions.ts:9](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/DynamicDimensions.ts#L9)
 
 ___
 
@@ -43,4 +43,4 @@ x / 390 * appWidth
 
 #### Defined in
 
-Context/DynamicDimensions.ts:20
+[src/components/Context/DynamicDimensions.ts:20](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/DynamicDimensions.ts#L20)

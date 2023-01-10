@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": ["stack-native", "example"],
+    "nohoist": ["**/*/**"]
+  },
+  "name": "monorepo"
+}

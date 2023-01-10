@@ -11,7 +11,7 @@ Convenience color settings for your app. Not required or encouraged, but can be 
 
 #### Defined in
 
-Context/Colors.ts:4
+[src/components/Context/Colors.ts:4](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/Colors.ts#L4)
 
 ## Functions
 
@@ -25,4 +25,4 @@ Context/Colors.ts:4
 
 #### Defined in
 
-Context/Colors.ts:8
+[src/components/Context/Colors.ts:8](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Context/Colors.ts#L8)

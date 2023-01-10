@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import {
-  useDynamicHeight,
-  useDynamicWidth,
-} from 'src/components/Context/DynamicDimensions';
+import { useDynamicHeight } from '../../hooks/Layout/DynamicDimensions';
+import { useDynamicWidth } from '../../hooks/Layout/DynamicDimensions';
 
 export type SpacerProps = {
   /**

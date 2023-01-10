@@ -1,9 +1,19 @@
 InputContainer
-**InputContainerComponentType**: typeof [`InputContainer`](Inputs_InputContainer.md#inputcontainer)
+**InputContainerAllProps**: [`InputContainerProps`](Inputs_InputContainer.md#inputcontainerprops) & `PressableProps` & { `children`: `ReactNode`  }
 
 #### Defined in
 
-Inputs/InputContainer.tsx:176
+[src/components/Inputs/InputContainer.tsx:78](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Inputs/InputContainer.tsx#L78)
+
+___
+
+### InputContainerComponentType
+
+Ƭ **InputContainerComponentType**: typeof [`InputContainer`](Inputs_InputContainer.md#inputcontainer)
+
+#### Defined in
+
+[src/components/Inputs/InputContainer.tsx:196](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Inputs/InputContainer.tsx#L196)
 
 ___
 
@@ -29,13 +39,13 @@ Props for the input container
 
 #### Defined in
 
-Inputs/InputContainer.tsx:23
+[src/components/Inputs/InputContainer.tsx:24](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Inputs/InputContainer.tsx#L24)
 
 ## Functions
 
 ### InputContainer
 
-▸ **InputContainer**(`props`): `Element`
+▸ **InputContainer**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
 A component that should be used as a base for building text-input like components.
 This shouldn't be directly in Screens used too often, usually just passed as the `InputContainer` prop to `TextField` and such.
@@ -54,12 +64,12 @@ const code = 'example';
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`InputContainerProps`](Inputs_InputContainer.md#inputcontainerprops) & `PressableProps` |
+| `props` | [`InputContainerAllProps`](Inputs_InputContainer.md#inputcontainerallprops) |
 
 #### Returns
 
-`Element`
+``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
 #### Defined in
 
-Inputs/InputContainer.tsx:90
+node_modules/@types/react/index.d.ts:351

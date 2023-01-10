@@ -25,4 +25,4 @@ return (<View {...props}><Text>I'm being measured</Text></View>)
 
 #### Defined in
 
-Layout/useInferredHeight.ts:18
+[Layout/useInferredHeight.ts:18](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/hooks/Layout/useInferredHeight.ts#L18)

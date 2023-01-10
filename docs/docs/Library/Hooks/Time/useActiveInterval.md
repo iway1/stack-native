@@ -17,4 +17,4 @@ unexpectedly. The interval will reset any time this hooks parameter changes or t
 
 #### Defined in
 
-Time/useActiveInterval.ts:10
+[Time/useActiveInterval.ts:10](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/hooks/Time/useActiveInterval.ts#L10)

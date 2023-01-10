@@ -15,7 +15,7 @@ type LayoutFunction = (event: LayoutChangeEvent) => void;
  * ```
  * @returns
  */
-export default function useInferredHeight() {
+export function useInferredHeight() {
   const [height, setHeight] = useState<number>(0);
 
   const onLayout: LayoutFunction = (event) => {

@@ -18,4 +18,4 @@ there's an optional prop.), or if there is no error.
 
 #### Defined in
 
-Query/useQueryOrMutationError.ts:11
+[Query/useQueryOrMutationError.ts:11](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/hooks/Query/useQueryOrMutationError.ts#L11)

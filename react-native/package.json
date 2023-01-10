@@ -2,9 +2,7 @@
   "name": "stack-native",
   "version": "0.1.2",
   "description": "test",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "src/index",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -54,6 +52,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
+    "@hookform/resolvers": "^2.9.10",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@tanstack/react-query": "^4.19.1",
@@ -64,7 +63,13 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "expo-device": "^5.0.0",
+    "expo-location": "^15.0.1",
+    "expo-modules-core": "^1.0.4",
+    "expo-notifications": "^0.17.0",
+    "expo-task-manager": "^11.0.1",
     "jest": "^28.1.1",
+    "nativewind": "^2.0.11",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "18.1.0",
@@ -73,24 +78,32 @@
     "react-native-builder-bob": "^0.20.3",
     "react-native-mask-input": "^1.2.2",
     "react-native-reanimated": "2.12.0",
+    "react-native-safe-area-context": "^4.4.1",
     "release-it": "^15.0.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.5.2",
     "zod": "^3.20.2"
   },
   "peerDependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "@tanstack/react-query": "^4.19.1",
+    "expo-device": "^5.0.0",
+    "expo-location": "^15.0.1",
+    "expo-modules-core": "^1.0.4",
+    "expo-notifications": "^0.17.0",
+    "expo-task-manager": "^11.0.1",
+    "nativewind": "^2.0.11",
     "react": "*",
     "react-hook-form": "^7.40.0",
     "react-native": "*",
     "react-native-mask-input": "^1.2.2",
     "react-native-reanimated": "^2.13.0",
+    "react-native-safe-area-context": "^4.4.1",
     "zod": "^3.20.2"
   },
   "engines": {
     "node": ">= 16.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -102,23 +115,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   },
   "eslintConfig": {
     "root": true,
@@ -150,22 +146,7 @@
     "trailingComma": "es5",
     "useTabs": false
   },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
-  },
   "dependencies": {
-    "@types/react": "^18.0.26",
-    "nativewind": "^2.0.11"
+    "@types/react": "^18.0.26"
   }
 }

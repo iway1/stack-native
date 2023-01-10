@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "stack-native": ["../react-native/src/index.tsx"]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}

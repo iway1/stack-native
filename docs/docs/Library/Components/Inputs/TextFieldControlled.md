@@ -5,6 +5,8 @@ TextFieldControlled
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `LabelComponent?` | `ReactNode` | Component to render a |
+| `className?` | `string` | nativewind class name. |
 | `containerErrorStyle?` | `StyleProp`<`ViewStyle`\> | A style that gets applied to the container any time there is a form error or a network error from showErrorsQueryOrMutation. |
 | `containerFocusedStyle?` | `StyleProp`<`ViewStyle`\> | styles applied to the text input when it's focused. |
 | `containerProps?` | `ViewProps` | ViewProps for the outermost container component. |
@@ -22,19 +24,20 @@ TextFieldControlled
 | `multilineStyles?` | `StyleProp`<`ViewStyle`\> | Applies additional styles when the input is set to multiline. |
 | `rightAdornmentElement?` | `ReactNode` | An element that gets rendered on the right side of the text input. Useful for rendering icons, like "show password" eye. |
 | `showErrorsQueryOrMutation?` | `QueryOrMutation` | renders tRPC error messages from any query or mutation. Takes priority over validation error messages (only one will be shown at a time). |
+| `style?` | `StyleProp`<`ViewStyle`\> | Style to apply to the container |
 | `textInputProps` | `TextInputProps` | Any text input props your want to pass to the inner input. |
 | `textInputRef?` | `MutableRefObject`<`TextInput` \| ``null``\> | Ref for the text input. Useful if you need to pass it to nextInputRef. |
 | `unfocusedBorderColor?` | `string` | Unfocused border color |
 
 #### Defined in
 
-Inputs/TextFieldControlled.tsx:57
+[src/components/Inputs/TextFieldControlled.tsx:57](https://github.com/iway1/stack-native/blob/8a81454/react-native/src/components/Inputs/TextFieldControlled.tsx#L57)
 
 ## Functions
 
 ### TextFieldControlled
 
-▸ **TextFieldControlled**(`«destructured»`): `Element`
+▸ **TextFieldControlled**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
 A controlled text field. Useful for situation where controlled components don't fit your use case.
 
@@ -42,12 +45,12 @@ A controlled text field. Useful for situation where controlled components don't 
 
 | Name | Type |
 | :------ | :------ |
-| `«destructured»` | [`TextFieldControlledProps`](Inputs_TextFieldControlled.md#textfieldcontrolledprops) |
+| `props` | [`TextFieldControlledProps`](Inputs_TextFieldControlled.md#textfieldcontrolledprops) |
 
 #### Returns
 
-`Element`
+``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
 #### Defined in
 
-Inputs/TextFieldControlled.tsx:149
+node_modules/@types/react/index.d.ts:351

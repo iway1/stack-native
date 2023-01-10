@@ -2,8 +2,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "stack-native": ["src/index"]
+      "stack-native": ["./src/index"],
+      "src": ["./src"]
     },
+
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
@@ -23,6 +25,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
-  }
+    "target": "esnext",
+    "declaration": true,
+    "declarationMap": true,
+  },
+  "exclude": ["example"]
 }
